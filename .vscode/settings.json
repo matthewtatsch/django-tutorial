@@ -1,4 +1,3 @@
 {
-    "git.ignoreLimitWarning": true,
-    "python.pythonPath": "/Users/Mateo/.virtualenvs/django-tutorial/bin/python"
+    "git.ignoreLimitWarning": true
 }
