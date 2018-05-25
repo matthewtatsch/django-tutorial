@@ -3,33 +3,37 @@ polls views
 """
 
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_list_or_404, get_object_or_404, render
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
+from django.views import generic
 
 from .models import Choice, Question
 
 
-def index(request):
-    """polls index
+class IndexView(generic.ListView):
+    """polls index"""
 
-    Displays the five most recently published questions.
-    """
+    template_name = 'polls/index.html'
+    context_object_name = 'latest_question_list'
 
-    latest_question_list = get_list_or_404(Question.objects.order_by('-pub_date')[:5])
-    context = {'latest_question_list': latest_question_list}
-    return render(request, 'polls/index.html', context)
+    def get_queryset(self):
+        """Return the five most recently published questions."""
+        return Question.objects.order_by('-pub_date')[:5]
 
-def detail(request, question_id):
-    """detail for question"""
 
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'polls/detail.html', {'question': question})
+class DetailView(generic.DetailView):
+    """Question detail"""
 
-def results(request, question_id):
-    """results for question"""
+    model = Question
+    template_name = 'polls/detail.html'
 
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'polls/results.html', {'question': question})
+
+class ResultsView(generic.DetailView):
+    """Question results"""
+
+    model = Question
+    template_name = 'polls/results.html'
+
 
 def vote(request, question_id):
     """voting page"""
