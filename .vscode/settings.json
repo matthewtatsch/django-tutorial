@@ -1,4 +1,8 @@
 {
     "git.ignoreLimitWarning": true,
-    "python.pythonPath": "/Users/Mateo/.virtualenvs/django-tutorial/bin/python"
+    "python.pythonPath": "/Users/Mateo/.virtualenvs/django-tutorial/bin/python",
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint_django"
+    ],
 }
