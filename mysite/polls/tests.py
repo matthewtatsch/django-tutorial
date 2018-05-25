@@ -1,4 +1,5 @@
 """Tests for the polls application."""
+# pylint: disable=C0103
 
 import datetime
 
@@ -8,6 +9,7 @@ from django.utils import timezone
 from .models import Question
 
 class QuestionModelTests(TestCase):
+    """tests for Question model"""
 
     def test_was_published_recently_with_future_question(self):
         """
@@ -35,4 +37,3 @@ class QuestionModelTests(TestCase):
         time = timezone.now() - datetime.timedelta(hours=23, minutes=59, seconds=59)
         recent_question = Question(pub_date=time)
         self.assertIs(recent_question.was_published_recently(), True)
-

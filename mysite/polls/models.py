@@ -23,7 +23,7 @@ class Question(models.Model):
         """Indicates if question was published within the last 1 days.
         """
         now = timezone.now()
-        return now - datetime.timedelta(days=1) <=self.pub_date <= now
+        return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
 
 class Choice(models.Model):
